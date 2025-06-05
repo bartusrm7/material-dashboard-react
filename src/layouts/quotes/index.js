@@ -1,3 +1,12 @@
+import MDBox from "components/MDBox";
+import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
+import DashboardNavbar from "examples/Navbars/DashboardNavbar";
+
 export default function Quotes() {
-  return <div>index</div>;
+  return (
+    <DashboardLayout>
+      <DashboardNavbar />
+      <MDBox>asdsadas</MDBox>
+    </DashboardLayout>
+  );
 }

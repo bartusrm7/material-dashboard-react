@@ -36,12 +36,10 @@ Coded by www.creative-tim.com
 */
 
 // Material Dashboard 2 React layouts
-import Dashboard from "layouts/dashboard";
 import Quotes from "layouts/quotes";
+import Online from "layouts/quotes/components/Online";
 import Analysis from "layouts/analysis";
 import GPS from "layouts/gps";
-import SignIn from "layouts/authentication/sign-in";
-import SignUp from "layouts/authentication/sign-up";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
@@ -49,19 +47,29 @@ import Icon from "@mui/material/Icon";
 const routes = [
   {
     type: "collapse",
-    name: "Dashboard",
-    key: "dashboard",
-    icon: <Icon fontSize="medium">dashboard</Icon>,
-    route: "/dashboard",
-    component: <Dashboard />,
-  },
-  {
-    type: "collapse",
     name: "Quotes",
     key: "quotes",
     icon: <Icon fontSize="medium">price_change</Icon>,
     route: "/quotes",
     component: <Quotes />,
+    // collapse: [
+    //   {
+    //     type: "collapse",
+    //     name: "Online",
+    //     key: "online",
+    //     icon: <Icon fontSize="medium">price_change</Icon>,
+    //     route: "/online",
+    //     component: <Online />,
+    //   },
+    //   {
+    //     type: "collapse",
+    //     name: "History data",
+    //     key: "History data",
+    //     icon: <Icon fontSize="medium">price_change</Icon>,
+    //     route: "/history-data",
+    //     component: <HistoryData />,
+    //   },
+    // ],
   },
   {
     type: "collapse",
@@ -79,22 +87,6 @@ const routes = [
     icon: <Icon fontSize="medium">location_on</Icon>,
     route: "/gps",
     component: <GPS />,
-  },
-  {
-    type: "collapse",
-    name: "Sign In",
-    key: "sign-in",
-    icon: <Icon fontSize="medium">login</Icon>,
-    route: "/authentication/sign-in",
-    component: <SignIn />,
-  },
-  {
-    type: "collapse",
-    name: "Sign Up",
-    key: "sign-up",
-    icon: <Icon fontSize="medium">assignment</Icon>,
-    route: "/authentication/sign-up",
-    component: <SignUp />,
   },
 ];
 
