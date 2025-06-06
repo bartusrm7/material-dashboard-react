@@ -42,6 +42,7 @@ import Analysis from "layouts/analysis";
 import GPS from "layouts/gps";
 
 import SignIn from "layouts/authentication/sign-in/index";
+import SignUp from "layouts/authentication/sign-up/index";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
@@ -54,22 +55,23 @@ const routes = [
     icon: <Icon fontSize="medium">price_change</Icon>,
     route: "/quotes",
     component: <Quotes />,
-    collapse: [
-      // {
-      //   name: "Online",
-      //   key: "online",
-      //   icon: <Icon fontSize="medium">price_change</Icon>,
-      //   route: "/online",
-      //   component: <Online />,
-      // },
-      // {
-      //   name: "History data",
-      //   key: "History data",
-      //   icon: <Icon fontSize="medium">price_change</Icon>,
-      //   route: "/history-data",
-      //   component: <HistoryData />,
-      // },
-    ],
+    // collapse: [
+    //   {
+    //     type: "collapse",
+    //     name: "Online",
+    //     key: "online",
+    //     icon: <Icon fontSize="medium">price_change</Icon>,
+    //     route: "/quotes/online",
+    //     component: <Online />,
+    //   },
+    //   {
+    //     name: "History data",
+    //     key: "History data",
+    //     icon: <Icon fontSize="medium">price_change</Icon>,
+    //     route: "/history-data",
+    //     component: <HistoryData />,
+    //   },
+    // ],
   },
   {
     type: "collapse",
@@ -91,8 +93,17 @@ const routes = [
     type: "collapse",
     name: "Sign In",
     key: "sign-in",
+    icon: <Icon fontSize="medium">location_on</Icon>,
     route: "/sign-in",
     component: <SignIn />,
+  },
+  {
+    type: "collapse",
+    name: "Sign up",
+    key: "sign-up",
+    icon: <Icon fontSize="medium">location_on</Icon>,
+    route: "/sign-Up",
+    component: <SignUp />,
   },
 ];
 

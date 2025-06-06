@@ -13,12 +13,14 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
+// Images
+import bgImage from "assets/images/bg-sign-up-cover.jpeg";
+
 // react-router-dom components
 import { Link } from "react-router-dom";
 
 // @mui material components
 import Card from "@mui/material/Card";
-import Checkbox from "@mui/material/Checkbox";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
@@ -29,10 +31,27 @@ import MDButton from "components/MDButton";
 // Authentication layout components
 import CoverLayout from "layouts/authentication/components/CoverLayout";
 
-// Images
-import bgImage from "assets/images/bg-sign-up-cover.jpeg";
+//
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { userRegister } from "store/components/auth/registerSlice";
 
 function Cover() {
+  const dispatch = useDispatch();
+  const [userData, setUserData] = useState({ userName: "", userEmail: "", userPassword: "" });
+
+  const handleInputFormChange = (key, value) => {
+    setUserData((prevState) => ({
+      ...prevState,
+      [key]: value,
+    }));
+  };
+
+  const handleUserRegistration = (e) => {
+    e.preventDefault();
+    dispatch(userRegister(userData));
+  };
+
   return (
     <CoverLayout image={bgImage}>
       <Card>
@@ -57,38 +76,38 @@ function Cover() {
         <MDBox pt={4} pb={3} px={3}>
           <MDBox component="form" role="form">
             <MDBox mb={2}>
-              <MDInput type="text" label="Name" variant="standard" fullWidth />
+              <MDInput
+                type="text"
+                label="Name"
+                variant="standard"
+                value={userData.userName}
+                onChange={(e) => handleInputFormChange("userName", e.target.value)}
+                fullWidth
+              />
             </MDBox>
             <MDBox mb={2}>
-              <MDInput type="email" label="Email" variant="standard" fullWidth />
+              <MDInput
+                type="email"
+                label="Email"
+                variant="standard"
+                value={userData.userEmail}
+                onChange={(e) => handleInputFormChange("userEmail", e.target.value)}
+                fullWidth
+              />
             </MDBox>
             <MDBox mb={2}>
-              <MDInput type="password" label="Password" variant="standard" fullWidth />
-            </MDBox>
-            <MDBox display="flex" alignItems="center" ml={-1}>
-              <Checkbox />
-              <MDTypography
-                variant="button"
-                fontWeight="regular"
-                color="text"
-                sx={{ cursor: "pointer", userSelect: "none", ml: -1 }}
-              >
-                &nbsp;&nbsp;I agree the&nbsp;
-              </MDTypography>
-              <MDTypography
-                component="a"
-                href="#"
-                variant="button"
-                fontWeight="bold"
-                color="info"
-                textGradient
-              >
-                Terms and Conditions
-              </MDTypography>
+              <MDInput
+                type="password"
+                label="Password"
+                variant="standard"
+                value={userData.userPassword}
+                onChange={(e) => handleInputFormChange("userPassword", e.target.value)}
+                fullWidth
+              />
             </MDBox>
             <MDBox mt={4} mb={1}>
-              <MDButton variant="gradient" color="info" fullWidth>
-                sign in
+              <MDButton onClick={handleUserRegistration} variant="gradient" color="info" fullWidth>
+                sign up
               </MDButton>
             </MDBox>
             <MDBox mt={3} mb={1} textAlign="center">
@@ -96,7 +115,7 @@ function Cover() {
                 Already have an account?{" "}
                 <MDTypography
                   component={Link}
-                  to="/authentication/sign-in"
+                  to="/sign-in"
                   variant="button"
                   color="info"
                   fontWeight="medium"
