@@ -65,7 +65,6 @@ function SidenavCollapse({ icon, name, active, ...rest }) {
             icon
           )}
         </ListItemIcon>
-
         <ListItemText
           primary={name}
           sx={(theme) =>

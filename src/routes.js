@@ -41,45 +41,44 @@ import Online from "layouts/quotes/components/Online";
 import Analysis from "layouts/analysis";
 import GPS from "layouts/gps";
 
+import SignIn from "layouts/authentication/sign-in/index";
+
 // @mui icons
 import Icon from "@mui/material/Icon";
 
 const routes = [
   {
     type: "collapse",
-    name: "Quotes",
+    name: "Notowania",
     key: "quotes",
     icon: <Icon fontSize="medium">price_change</Icon>,
     route: "/quotes",
     component: <Quotes />,
-    // collapse: [
-    //   {
-    //     type: "collapse",
-    //     name: "Online",
-    //     key: "online",
-    //     icon: <Icon fontSize="medium">price_change</Icon>,
-    //     route: "/online",
-    //     component: <Online />,
-    //   },
-    //   {
-    //     type: "collapse",
-    //     name: "History data",
-    //     key: "History data",
-    //     icon: <Icon fontSize="medium">price_change</Icon>,
-    //     route: "/history-data",
-    //     component: <HistoryData />,
-    //   },
-    // ],
+    collapse: [
+      // {
+      //   name: "Online",
+      //   key: "online",
+      //   icon: <Icon fontSize="medium">price_change</Icon>,
+      //   route: "/online",
+      //   component: <Online />,
+      // },
+      // {
+      //   name: "History data",
+      //   key: "History data",
+      //   icon: <Icon fontSize="medium">price_change</Icon>,
+      //   route: "/history-data",
+      //   component: <HistoryData />,
+      // },
+    ],
   },
   {
     type: "collapse",
-    name: "Analysis",
+    name: "Analizy",
     key: "analysis",
     icon: <Icon fontSize="medium">equalizer</Icon>,
     route: "/analysis",
     component: <Analysis />,
   },
-
   {
     type: "collapse",
     name: "GPS",
@@ -87,6 +86,13 @@ const routes = [
     icon: <Icon fontSize="medium">location_on</Icon>,
     route: "/gps",
     component: <GPS />,
+  },
+  {
+    type: "collapse",
+    name: "Sign In",
+    key: "sign-in",
+    route: "/sign-in",
+    component: <SignIn />,
   },
 ];
 
