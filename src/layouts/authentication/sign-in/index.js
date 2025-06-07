@@ -34,8 +34,6 @@ import CoverLayout from "layouts/authentication/components/CoverLayout";
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 
 function Basic() {
-  const [rememberMe, setRememberMe] = useState(false);
-
   return (
     <CoverLayout image={bgImage}>
       <Card>
@@ -51,10 +49,10 @@ function Basic() {
           textAlign="center"
         >
           <MDTypography variant="h4" fontWeight="medium" color="white" mt={1}>
-            Sign in
+            Zaloguj się
           </MDTypography>
           <MDTypography display="block" variant="button" color="white" my={1}>
-            Enter your email and password to register
+            Wpisz swój email oraz hasło
           </MDTypography>
         </MDBox>
         <MDBox pt={4} pb={3} px={3}>
@@ -63,16 +61,16 @@ function Basic() {
               <MDInput variant="standard" type="email" label="Email" fullWidth />
             </MDBox>
             <MDBox mb={2}>
-              <MDInput variant="standard" type="password" label="Password" fullWidth />
+              <MDInput variant="standard" type="password" label="Hasło" fullWidth />
             </MDBox>
             <MDBox mt={4} mb={1}>
               <MDButton variant="gradient" color="info" fullWidth>
-                sign in
+                Zaloguj się
               </MDButton>
             </MDBox>
             <MDBox mt={3} mb={1} textAlign="center">
               <MDTypography variant="button" color="text">
-                Don&apos;t have an account?{" "}
+                Nie masz konta?{" "}
                 <MDTypography
                   component={Link}
                   to="/sign-up"
@@ -81,7 +79,7 @@ function Basic() {
                   fontWeight="medium"
                   textGradient
                 >
-                  Sign up
+                  Zarejestuj się
                 </MDTypography>
               </MDTypography>
             </MDBox>

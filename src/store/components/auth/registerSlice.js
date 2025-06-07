@@ -2,7 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   user: null,
-  isLoading: false,
+  isRegistered: false,
+  loading: false,
   error: null,
 };
 
@@ -36,16 +37,19 @@ export const registerSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(userRegister.pending, (state) => {
-        state.isLoading = true;
+        state.isRegistered = false;
+        state.loading = true;
         state.error = null;
       })
       .addCase(userRegister.fulfilled, (state, action) => {
         state.user = action.payload;
-        state.isLoading = false;
+        state.isRegistered = true;
+        state.loading = false;
         state.isLoggedIn = true;
       })
       .addCase(userRegister.rejected, (state, action) => {
-        state.isLoading = false;
+        state.isRegistered = false;
+        state.loading = false;
         state.error = action.payload;
       });
   },

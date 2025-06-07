@@ -17,7 +17,7 @@ Coded by www.creative-tim.com
 import bgImage from "assets/images/bg-sign-up-cover.jpeg";
 
 // react-router-dom components
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // @mui material components
 import Card from "@mui/material/Card";
@@ -32,13 +32,17 @@ import MDButton from "components/MDButton";
 import CoverLayout from "layouts/authentication/components/CoverLayout";
 
 //
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { userRegister } from "store/components/auth/registerSlice";
 
 function Cover() {
   const dispatch = useDispatch();
+  const isRegistered = useSelector((state) => state.register.isRegistered);
+  const errorMessage = useSelector((state) => state.register.error);
   const [userData, setUserData] = useState({ userName: "", userEmail: "", userPassword: "" });
+
+  const navigate = useNavigate();
 
   const handleInputFormChange = (key, value) => {
     setUserData((prevState) => ({
@@ -47,10 +51,17 @@ function Cover() {
     }));
   };
 
-  const handleUserRegistration = (e) => {
+  const handleUserRegistration = async (e) => {
     e.preventDefault();
-    dispatch(userRegister(userData));
+    await dispatch(userRegister(userData));
   };
+
+  useEffect(() => {
+    if (isRegistered) {
+      navigate("/post-register");
+      errorMessage = "";
+    }
+  }, [isRegistered, navigate]);
 
   return (
     <CoverLayout image={bgImage}>
@@ -67,10 +78,10 @@ function Cover() {
           textAlign="center"
         >
           <MDTypography variant="h4" fontWeight="medium" color="white" mt={1}>
-            Join us today
+            Dołącz do nas dzisiaj
           </MDTypography>
           <MDTypography display="block" variant="button" color="white" my={1}>
-            Enter your name, email and password to register
+            Wpisz swoje imie, email oraz hasło
           </MDTypography>
         </MDBox>
         <MDBox pt={4} pb={3} px={3}>
@@ -78,7 +89,7 @@ function Cover() {
             <MDBox mb={2}>
               <MDInput
                 type="text"
-                label="Name"
+                label="Imie"
                 variant="standard"
                 value={userData.userName}
                 onChange={(e) => handleInputFormChange("userName", e.target.value)}
@@ -98,21 +109,28 @@ function Cover() {
             <MDBox mb={2}>
               <MDInput
                 type="password"
-                label="Password"
+                label="Hasło"
                 variant="standard"
                 value={userData.userPassword}
                 onChange={(e) => handleInputFormChange("userPassword", e.target.value)}
                 fullWidth
               />
             </MDBox>
+            <MDBox mt={4}>
+              {errorMessage && (
+                <MDTypography textAlign="center" color="error" fontSize="1rem" fontWeight="bold">
+                  {errorMessage.error}
+                </MDTypography>
+              )}
+            </MDBox>
             <MDBox mt={4} mb={1}>
               <MDButton onClick={handleUserRegistration} variant="gradient" color="info" fullWidth>
-                sign up
+                Zarejestuj się
               </MDButton>
             </MDBox>
             <MDBox mt={3} mb={1} textAlign="center">
               <MDTypography variant="button" color="text">
-                Already have an account?{" "}
+                Masz już konto?{" "}
                 <MDTypography
                   component={Link}
                   to="/sign-in"
@@ -121,7 +139,7 @@ function Cover() {
                   fontWeight="medium"
                   textGradient
                 >
-                  Sign In
+                  Zaloguj się
                 </MDTypography>
               </MDTypography>
             </MDBox>

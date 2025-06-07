@@ -90,19 +90,15 @@ const routes = [
     component: <GPS />,
   },
   {
-    type: "collapse",
     name: "Sign In",
     key: "sign-in",
-    icon: <Icon fontSize="medium">location_on</Icon>,
     route: "/sign-in",
     component: <SignIn />,
   },
   {
-    type: "collapse",
-    name: "Sign up",
+    name: "Sign Up",
     key: "sign-up",
-    icon: <Icon fontSize="medium">location_on</Icon>,
-    route: "/sign-Up",
+    route: "/sign-up",
     component: <SignUp />,
   },
 ];

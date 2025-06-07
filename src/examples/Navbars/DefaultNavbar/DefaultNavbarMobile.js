@@ -45,8 +45,13 @@ function DefaultNavbarMobile({ open, close }) {
       MenuListProps={{ style: { width: `calc(${width}px - 4rem)` } }}
     >
       <MDBox px={0.5}>
-        <DefaultNavbarLink icon="account_circle" name="sign up" route="/sign-up" />
-        <DefaultNavbarLink icon="key" name="sign in" route="/sign-in" />
+        <DefaultNavbarLink
+          icon="account_circle"
+          name="Zarejestuj się"
+          route="/sign-up"
+          light={false}
+        />
+        <DefaultNavbarLink icon="key" name="Zaloguj się" route="/sign-in" light={false} />
       </MDBox>
     </Menu>
   );

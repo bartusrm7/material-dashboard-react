@@ -31,12 +31,14 @@ function CoverLayout({ coverHeight, image, children }) {
   return (
     <PageLayout>
       <DefaultNavbar
-        action={{
-          type: "external",
-          label: "free download",
-        }}
         transparent
         light
+        action={{
+          type: "internal", // lub "external"
+          route: "/home",
+          color: "primary", // kolor przycisku
+          label: "Home", // tekst wyświetlany w przycisku
+        }}
       />
       <MDBox
         width="calc(100% - 2rem)"
