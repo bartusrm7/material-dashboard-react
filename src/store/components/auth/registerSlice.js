@@ -45,7 +45,7 @@ export const registerSlice = createSlice({
         state.user = action.payload;
         state.isRegistered = true;
         state.loading = false;
-        state.isLoggedIn = true;
+        state.error = null;
       })
       .addCase(userRegister.rejected, (state, action) => {
         state.isRegistered = false;

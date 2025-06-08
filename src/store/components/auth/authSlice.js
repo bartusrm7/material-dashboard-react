@@ -1,7 +1,9 @@
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+
 const initialState = {
   user: null,
   isLogged: false,
-  isLoading: false,
+  loading: false,
   error: null,
 };
 
@@ -25,24 +27,24 @@ export const userLogin = createAsyncThunk("user/login", async (userData, { rejec
   }
 });
 
-export const registerSlice = createSlice({
-  name: "register",
+export const authSlice = createSlice({
+  name: "auth",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(userRegister.pending, (state) => {
+      .addCase(userLogin.pending, (state) => {
         state.isLogged = false;
         state.loading = true;
         state.error = null;
       })
-      .addCase(userRegister.fulfilled, (state, action) => {
+      .addCase(userLogin.fulfilled, (state, action) => {
         state.user = action.payload;
         state.isLogged = true;
         state.loading = false;
-        state.isLoggedIn = true;
+        state.error = null;
       })
-      .addCase(userRegister.rejected, (state, action) => {
+      .addCase(userLogin.rejected, (state, action) => {
         state.isLogged = false;
         state.loading = false;
         state.error = action.payload;

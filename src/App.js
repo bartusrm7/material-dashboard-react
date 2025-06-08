@@ -46,6 +46,19 @@ import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "co
 import brandWhite from "assets/images/logo-ct.png";
 import brandDark from "assets/images/logo-ct-dark.png";
 
+import Cookies from "js-cookie";
+
+// eslint-disable-next-line react/prop-types
+function ProtectedRoute({ children }) {
+  const token = Cookies.get("accessToken");
+
+  if (!token) {
+    return <Navigate to="/sign-in" replace />;
+  }
+
+  return children;
+}
+
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
   const {
@@ -98,7 +111,13 @@ export default function App() {
       }
 
       if (route.route) {
-        return <Route exact path={route.route} element={route.component} key={route.key} />;
+        const element = route.protected ? (
+          <ProtectedRoute>{route.component}</ProtectedRoute>
+        ) : (
+          route.component
+        );
+
+        return <Route exact path={route.route} element={element} key={route.key} />;
       }
 
       return null;

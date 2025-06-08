@@ -37,7 +37,8 @@ Coded by www.creative-tim.com
 
 // Material Dashboard 2 React layouts
 import Quotes from "layouts/quotes";
-import Online from "layouts/quotes/components/Online";
+import Online from "layouts/online";
+import HistoryData from "layouts/historyData";
 import Analysis from "layouts/analysis";
 import GPS from "layouts/gps";
 
@@ -54,31 +55,35 @@ const routes = [
     key: "quotes",
     icon: <Icon fontSize="medium">price_change</Icon>,
     route: "/quotes",
+    protected: true,
     component: <Quotes />,
-    // collapse: [
-    //   {
-    //     type: "collapse",
-    //     name: "Online",
-    //     key: "online",
-    //     icon: <Icon fontSize="medium">price_change</Icon>,
-    //     route: "/quotes/online",
-    //     component: <Online />,
-    //   },
-    //   {
-    //     name: "History data",
-    //     key: "History data",
-    //     icon: <Icon fontSize="medium">price_change</Icon>,
-    //     route: "/history-data",
-    //     component: <HistoryData />,
-    //   },
-    // ],
+    children: [
+      {
+        name: "Online",
+        key: "online",
+        icon: <Icon fontSize="medium">price_change</Icon>,
+        route: "/quotes/online",
+        protected: true,
+        component: <Online />,
+      },
+      {
+        name: "History Data",
+        key: "history-data",
+        icon: <Icon fontSize="medium">price_change</Icon>,
+        route: "/quotes/history-data",
+        protected: true,
+        component: <HistoryData />,
+      },
+    ],
   },
+
   {
     type: "collapse",
     name: "Analizy",
     key: "analysis",
     icon: <Icon fontSize="medium">equalizer</Icon>,
     route: "/analysis",
+    protected: true,
     component: <Analysis />,
   },
   {
@@ -87,6 +92,7 @@ const routes = [
     key: "gps",
     icon: <Icon fontSize="medium">location_on</Icon>,
     route: "/gps",
+    protected: true,
     component: <GPS />,
   },
   {

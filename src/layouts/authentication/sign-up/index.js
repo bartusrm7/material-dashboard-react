@@ -59,7 +59,6 @@ function Cover() {
   useEffect(() => {
     if (isRegistered) {
       navigate("/post-register");
-      errorMessage = "";
     }
   }, [isRegistered, navigate]);
 
