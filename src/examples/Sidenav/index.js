@@ -47,8 +47,11 @@ import {
   setWhiteSidenav,
 } from "context";
 import SidenavCollapseDropdown from "./SidenavCollapseDropdown";
+import { useDispatch } from "react-redux";
+import { userLogout } from "store/components/auth/authSlice";
 
 function Sidenav({ color, brand, brandName, routes, ...rest }) {
+  const reduxDispatch = useDispatch();
   const [controller, dispatch] = useMaterialUIController();
   const { miniSidenav, transparentSidenav, whiteSidenav, darkMode, sidenavColor } = controller;
   const location = useLocation();
@@ -63,6 +66,8 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
   }
 
   const closeSidenav = () => setMiniSidenav(dispatch, true);
+
+  const handleUserLogout = () => reduxDispatch(userLogout());
 
   useEffect(() => {
     // A function that sets the mini state of the sidenav.
@@ -206,6 +211,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
           variant="gradient"
           color={sidenavColor}
           fullWidth
+          onClick={handleUserLogout}
         >
           Logout
         </MDButton>

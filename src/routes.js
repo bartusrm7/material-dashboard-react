@@ -76,7 +76,22 @@ const routes = [
       },
     ],
   },
-
+  {
+    name: "Online",
+    key: "online",
+    icon: <Icon fontSize="medium">price_change</Icon>,
+    route: "/quotes/online",
+    protected: true,
+    component: <Online />,
+  },
+  {
+    name: "History Data",
+    key: "history-data",
+    icon: <Icon fontSize="medium">price_change</Icon>,
+    route: "/quotes/history-data",
+    protected: true,
+    component: <HistoryData />,
+  },
   {
     type: "collapse",
     name: "Analizy",

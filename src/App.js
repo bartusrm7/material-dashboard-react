@@ -47,6 +47,8 @@ import brandWhite from "assets/images/logo-ct.png";
 import brandDark from "assets/images/logo-ct-dark.png";
 
 import Cookies from "js-cookie";
+import { useDispatch, useSelector } from "react-redux";
+import { refreshAccessTokenThunk } from "store/components/auth/refreshToken";
 
 // eslint-disable-next-line react/prop-types
 function ProtectedRoute({ children }) {
@@ -60,6 +62,8 @@ function ProtectedRoute({ children }) {
 }
 
 export default function App() {
+  const reduxDispatch = useDispatch();
+  const isLogged = useSelector((state) => state.auth.isLogged);
   const [controller, dispatch] = useMaterialUIController();
   const {
     miniSidenav,
@@ -103,6 +107,20 @@ export default function App() {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
   }, [pathname]);
+
+  useEffect(() => {
+    if (isLogged) {
+      const refreshToken = async () => {
+        await reduxDispatch(refreshAccessTokenThunk());
+      };
+      refreshToken();
+
+      const interval = setInterval(() => {
+        refreshToken();
+      }, 14 * 60 * 1000);
+      return () => clearInterval(interval);
+    }
+  }, [reduxDispatch, isLogged]);
 
   const getRoutes = (allRoutes) =>
     allRoutes.map((route) => {

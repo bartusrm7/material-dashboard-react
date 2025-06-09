@@ -2,12 +2,13 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   user: null,
+  accessToken: "",
   isLogged: false,
   loading: false,
   error: null,
 };
 
-export const userLogin = createAsyncThunk("user/login", async (userData, { rejectWithValue }) => {
+export const userLogin = createAsyncThunk("/login", async (userData, { rejectWithValue }) => {
   try {
     const response = await fetch("http://localhost:3001/login", {
       method: "POST",
@@ -22,6 +23,45 @@ export const userLogin = createAsyncThunk("user/login", async (userData, { rejec
       return rejectWithValue({ error: errorData.error });
     }
     return await response.json();
+  } catch (error) {
+    return rejectWithValue({ error: error.message });
+  }
+});
+
+export const refreshAccessTokenThunk = createAsyncThunk(
+  "/refresh-token",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch("http://localhost:3001/refresh-token", {
+        method: "POST",
+        credentials: "include",
+      });
+      if (!response.ok) {
+        const errorData = await response.json();
+        return rejectWithValue({ error: errorData.error });
+      }
+      const data = await response.json();
+      return { accessToken: data.accessToken };
+    } catch (error) {
+      return rejectWithValue({ error: error.message });
+    }
+  }
+);
+
+export const userLogout = createAsyncThunk("/logout", async (_, { rejectWithValue }) => {
+  try {
+    const response = await fetch("http://localhost:3001/logout", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      credentials: "include",
+    });
+    if (!response.ok) {
+      const errorData = await response.json();
+      return rejectWithValue({ error: errorData.error });
+    }
+    return { isLogged: false };
   } catch (error) {
     return rejectWithValue({ error: error.message });
   }
@@ -46,6 +86,36 @@ export const authSlice = createSlice({
       })
       .addCase(userLogin.rejected, (state, action) => {
         state.isLogged = false;
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      .addCase(refreshAccessTokenThunk.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(refreshAccessTokenThunk.fulfilled, (state, action) => {
+        state.accessToken = action.payload.accessToken;
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(refreshAccessTokenThunk.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      .addCase(userLogout.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(userLogout.fulfilled, (state, action) => {
+        state.isLogged = action.payload.isLogged;
+        state.accessToken = "";
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(userLogout.rejected, (state, action) => {
+        state.isLogged = true;
         state.loading = false;
         state.error = action.payload;
       });
