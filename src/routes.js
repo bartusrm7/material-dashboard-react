@@ -67,7 +67,7 @@ const routes = [
         component: <Online />,
       },
       {
-        name: "History Data",
+        name: "Dane Historyczne",
         key: "history-data",
         icon: <Icon fontSize="medium">price_change</Icon>,
         route: "/quotes/history-data",
@@ -85,7 +85,7 @@ const routes = [
     component: <Online />,
   },
   {
-    name: "History Data",
+    name: "Dane Historyczne",
     key: "history-data",
     icon: <Icon fontSize="medium">price_change</Icon>,
     route: "/quotes/history-data",

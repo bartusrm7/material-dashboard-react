@@ -28,6 +28,7 @@ import DataTable from "examples/Tables/DataTable";
 
 // Data
 import onlineTableData from "./data/onlineTableData";
+import QuotesMarketData from "./data/quotesMarketData";
 
 export default function Online() {
   const { columns, rows } = onlineTableData();
@@ -36,7 +37,7 @@ export default function Online() {
     <DashboardLayout>
       <DashboardNavbar />
       <MDBox pt={6} pb={3}>
-        <Grid container spacing={6}>
+        <Grid>
           <Grid item xs={12}>
             <Card>
               <MDBox
@@ -64,6 +65,12 @@ export default function Online() {
               </MDBox>
             </Card>
           </Grid>
+
+          <MDBox mt={4.5}>
+            <MDBox>
+              <QuotesMarketData />
+            </MDBox>
+          </MDBox>
         </Grid>
       </MDBox>
     </DashboardLayout>

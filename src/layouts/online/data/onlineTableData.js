@@ -39,19 +39,19 @@ export default function data() {
       {
         nazwa: "Benzyna",
         symbol: "PB95",
-        cena: fuelData.pb95Price,
+        cena: <span>{`${fuelData.pb95Price}zł`}</span>,
         data: fuelData.date,
       },
       {
         nazwa: "Diesel",
         symbol: "ON",
-        cena: fuelData.dieselPrice,
+        cena: <span>{`${fuelData.dieselPrice}zł`}</span>,
         data: fuelData.date,
       },
       {
         nazwa: "Biopaliwo",
         symbol: "HVO",
-        cena: fuelData.hvoPrice,
+        cena: <span>{`${fuelData.hvoPrice}zł`}</span>,
         data: fuelData.date,
       },
     ],
