@@ -56,7 +56,7 @@ function Basic() {
 
   useEffect(() => {
     if (isLogged) {
-      navigate("/quotes");
+      navigate("/notowania/online");
     }
   }, [isLogged, navigate]);
 

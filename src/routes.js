@@ -41,6 +41,8 @@ import Online from "layouts/online";
 import HistoryData from "layouts/historyData";
 import Analysis from "layouts/analysis";
 import GPS from "layouts/gps";
+import VehicleData from "layouts/gps/vehicle/VehicleData";
+import VehicleHistory from "layouts/gps/vehicle-history/VehicleHistory";
 
 import SignIn from "layouts/authentication/sign-in/index";
 import SignUp from "layouts/authentication/sign-up/index";
@@ -52,25 +54,25 @@ const routes = [
   {
     type: "collapse",
     name: "Notowania",
-    key: "quotes",
+    key: "notowania",
     icon: <Icon fontSize="medium">price_change</Icon>,
-    route: "/quotes",
+    route: "/notowania",
     protected: true,
     component: <Quotes />,
     children: [
       {
         name: "Online",
         key: "online",
-        icon: <Icon fontSize="medium">price_change</Icon>,
-        route: "/quotes/online",
+        icon: <Icon fontSize="medium">show_chart</Icon>,
+        route: "/notowania/online",
         protected: true,
         component: <Online />,
       },
       {
         name: "Dane Historyczne",
-        key: "history-data",
-        icon: <Icon fontSize="medium">price_change</Icon>,
-        route: "/quotes/history-data",
+        key: "Dane Historyczne",
+        icon: <Icon fontSize="medium">assessment</Icon>,
+        route: "/notowania/dane-historyczne",
         protected: true,
         component: <HistoryData />,
       },
@@ -79,25 +81,25 @@ const routes = [
   {
     name: "Online",
     key: "online",
-    icon: <Icon fontSize="medium">price_change</Icon>,
-    route: "/quotes/online",
+    icon: <Icon fontSize="medium">show_chart</Icon>,
+    route: "/notowania/online",
     protected: true,
     component: <Online />,
   },
   {
     name: "Dane Historyczne",
-    key: "history-data",
-    icon: <Icon fontSize="medium">price_change</Icon>,
-    route: "/quotes/history-data",
+    key: "Dane Historyczne",
+    icon: <Icon fontSize="medium">assessment</Icon>,
+    route: "/notowania/dane-historyczne",
     protected: true,
     component: <HistoryData />,
   },
   {
     type: "collapse",
     name: "Analizy",
-    key: "analysis",
+    key: "analizy",
     icon: <Icon fontSize="medium">equalizer</Icon>,
-    route: "/analysis",
+    route: "/analizy",
     protected: true,
     component: <Analysis />,
   },
@@ -109,7 +111,58 @@ const routes = [
     route: "/gps",
     protected: true,
     component: <GPS />,
+    children: [
+      {
+        name: "Pojazdy",
+        key: "vehicles",
+        icon: <Icon fontSize="medium">directions_car</Icon>,
+        route: "/gps/pojazdy",
+        protected: true,
+        component: <VehicleData />,
+      },
+      {
+        name: "Historia pojazdu",
+        key: "historia pojazdu",
+        icon: <Icon fontSize="medium">table_chart</Icon>,
+        route: "/gps/historia-pojazdu",
+        protected: true,
+        component: <VehicleHistory />,
+      },
+      {
+        name: "Historia pojazdu",
+        key: "historia  pojazdu",
+        icon: <Icon fontSize="medium">table_chart</Icon>,
+        route: "/gps/historia-pojazdu",
+        protected: true,
+        component: <VehicleHistory />,
+      },
+    ],
   },
+  {
+    name: "Pojazdy",
+    key: "pojazdy",
+    icon: <Icon fontSize="medium">directions_car</Icon>,
+    route: "/gps/pojazdy",
+    protected: true,
+    component: <VehicleData />,
+  },
+  {
+    name: "Historia pojazdu",
+    key: "historia  pojazdu",
+    icon: <Icon fontSize="medium">table_chart</Icon>,
+    route: "/gps/historia-pojazdu",
+    protected: true,
+    component: <VehicleHistory />,
+  },
+  {
+    name: "Dane Historyczne",
+    key: "history-data",
+    icon: <Icon fontSize="medium">price_change</Icon>,
+    route: "/quotes/history-data",
+    protected: true,
+    component: <HistoryData />,
+  },
+
   {
     name: "Sign In",
     key: "sign-in",

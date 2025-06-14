@@ -3,9 +3,12 @@ import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import AnalysisTableData from "./data/analysisTableData";
+import DataTable from "examples/Tables/DataTable";
+import VehicleTableData from "./VehicleTableData";
 
-export default function Analysis() {
+export default function VehicleData() {
+  const { columns, rows } = VehicleTableData();
+
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -23,18 +26,21 @@ export default function Analysis() {
               coloredShadow="info"
             >
               <MDTypography variant="h6" color="white">
-                Wykres zmieniających się cen
+                Tablica z dostępnymi pojazdami
               </MDTypography>
             </MDBox>
-            <MDBox pt={3}>
-              <AnalysisTableData />
+
+            <MDBox pt={3} pb={3}>
+              <DataTable
+                table={{ columns, rows }}
+                isSorted={false}
+                entriesPerPage={false}
+                showTotalEntries={false}
+                noEndBorder
+              />
             </MDBox>
           </Card>
         </Grid>
-      </MDBox>
-
-      <MDBox>
-        <Card></Card>
       </MDBox>
     </DashboardLayout>
   );

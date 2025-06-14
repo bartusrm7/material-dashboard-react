@@ -3,9 +3,8 @@ import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import AnalysisTableData from "./data/analysisTableData";
 
-export default function Analysis() {
+export default function VehicleHistory() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -23,18 +22,11 @@ export default function Analysis() {
               coloredShadow="info"
             >
               <MDTypography variant="h6" color="white">
-                Wykres zmieniających się cen
+                Historia wszystkich pojazdów
               </MDTypography>
-            </MDBox>
-            <MDBox pt={3}>
-              <AnalysisTableData />
             </MDBox>
           </Card>
         </Grid>
-      </MDBox>
-
-      <MDBox>
-        <Card></Card>
       </MDBox>
     </DashboardLayout>
   );

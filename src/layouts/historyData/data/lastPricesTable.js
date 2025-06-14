@@ -12,7 +12,8 @@ import pricesTable from "./pricesTable";
 export default function LastPricesTable() {
   const dispatch = useDispatch();
   const fuelPrices = useSelector((state) => state.online.fuelData);
-  const [activeTab, setActiveTab] = useState(null);
+  const loading = useSelector((state) => state.online.loading);
+  const [activeTab, setActiveTab] = useState("ON");
   const [fuelPricesHistory, setFuelPricesHistory] = useState([]);
   const { columns, rows } = pricesTable({
     priceProp: fuelPricesHistory.map((item) => item.price),
@@ -20,9 +21,12 @@ export default function LastPricesTable() {
   });
 
   useEffect(() => {
-    const handleChoseFuelPrices = async () => {
-      await dispatch(getFuelPrices());
+    dispatch(getFuelPrices());
+  }, [dispatch]);
 
+  useEffect(() => {
+    const handleChoseFuelPrices = () => {
+      if (!fuelPrices.last15DaysONPrice) return;
       let fuelData = [];
 
       if (activeTab === "ON") {
@@ -46,11 +50,13 @@ export default function LastPricesTable() {
     };
 
     handleChoseFuelPrices();
-  }, [activeTab]);
+  }, [fuelPrices, activeTab]);
 
   const handleOpenTab = (event, newTabValue) => {
     setActiveTab(newTabValue);
   };
+
+  if (loading) return;
 
   return (
     <DashboardLayout>

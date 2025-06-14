@@ -96,15 +96,17 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
         if (children && children.length > 0) {
           return (
             <SidenavCollapseDropdown key={key} icon={icon} name={name}>
-              {children.map(({ name: childName, route: childRoute, key: childKey }) => (
-                <NavLink key={childKey} to={childRoute} style={{ textDecoration: "none" }}>
-                  <SidenavCollapse
-                    name={childName}
-                    icon={icon}
-                    active={location.pathname === childRoute}
-                  />
-                </NavLink>
-              ))}
+              {children.map(
+                ({ name: childName, route: childRoute, key: childKey, icon: childIcon }) => (
+                  <NavLink key={childKey} to={childRoute} style={{ textDecoration: "none" }}>
+                    <SidenavCollapse
+                      name={childName}
+                      icon={childIcon}
+                      active={location.pathname === childRoute}
+                    />
+                  </NavLink>
+                )
+              )}
             </SidenavCollapseDropdown>
           );
         }

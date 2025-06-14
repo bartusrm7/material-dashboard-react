@@ -28,6 +28,28 @@ export const userLogin = createAsyncThunk("/login", async (userData, { rejectWit
   }
 });
 
+export const authUserExternalGPSApi = createAsyncThunk(
+  "/gps-auth-api",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch("http://localhost:3001/gps-auth-api", {
+        method: "GET",
+        headers: {
+          "Content-type": "application/json",
+        },
+        credentials: "include",
+      });
+      if (!response.ok) {
+        const errorData = await response.json();
+        return rejectWithValue({ error: errorData.error });
+      }
+      return await response.json();
+    } catch (error) {
+      return rejectWithValue({ error: error.message });
+    }
+  }
+);
+
 export const refreshAccessTokenThunk = createAsyncThunk(
   "/refresh-token",
   async (_, { rejectWithValue }) => {
@@ -85,6 +107,23 @@ export const authSlice = createSlice({
         state.error = null;
       })
       .addCase(userLogin.rejected, (state, action) => {
+        state.isLogged = false;
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      .addCase(authUserExternalGPSApi.pending, (state) => {
+        state.isLogged = false;
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(authUserExternalGPSApi.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.isLogged = true;
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(authUserExternalGPSApi.rejected, (state, action) => {
         state.isLogged = false;
         state.loading = false;
         state.error = action.payload;

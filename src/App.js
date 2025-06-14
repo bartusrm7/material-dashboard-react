@@ -48,7 +48,7 @@ import brandDark from "assets/images/logo-ct-dark.png";
 
 import Cookies from "js-cookie";
 import { useDispatch, useSelector } from "react-redux";
-import { refreshAccessTokenThunk } from "store/components/auth/refreshToken";
+import { refreshAccessTokenThunk } from "store/components/auth/authSlice";
 
 // eslint-disable-next-line react/prop-types
 function ProtectedRoute({ children }) {

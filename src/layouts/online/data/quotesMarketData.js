@@ -21,7 +21,7 @@ export default function QuotesMarketData() {
     }, 900000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
@@ -52,7 +52,7 @@ export default function QuotesMarketData() {
           <MDBox mb={1.5}>
             <ComplexStatisticsCard
               color="warning"
-              title="USD/PLN"
+              title="USD/PLN NBP"
               quotes={`${gasOilData.close?.toFixed(2)}zł`}
               date={`${gasOilData.date?.split("-").reverse().join(".")}`}
               time={`${gasOilData?.time}`}
