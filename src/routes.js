@@ -43,6 +43,7 @@ import Analysis from "layouts/analysis";
 import GPS from "layouts/gps";
 import VehicleData from "layouts/gps/vehicle/VehicleData";
 import VehicleHistory from "layouts/gps/vehicle-history/VehicleHistory";
+import Statistics from "layouts/gps/statistics.js/Statistics";
 
 import SignIn from "layouts/authentication/sign-in/index";
 import SignUp from "layouts/authentication/sign-up/index";
@@ -129,12 +130,12 @@ const routes = [
         component: <VehicleHistory />,
       },
       {
-        name: "Historia pojazdu",
-        key: "historia  pojazdu",
+        name: "Statystyki",
+        key: "statystyki",
         icon: <Icon fontSize="medium">table_chart</Icon>,
-        route: "/gps/historia-pojazdu",
+        route: "/gps/statystyki",
         protected: true,
-        component: <VehicleHistory />,
+        component: <Statistics />,
       },
     ],
   },
@@ -147,22 +148,21 @@ const routes = [
     component: <VehicleData />,
   },
   {
-    name: "Historia pojazdu",
-    key: "historia  pojazdu",
-    icon: <Icon fontSize="medium">table_chart</Icon>,
+    name: "Historia Pojazdu",
+    key: "historia pojazdu",
+    icon: <Icon fontSize="medium">price_change</Icon>,
     route: "/gps/historia-pojazdu",
     protected: true,
     component: <VehicleHistory />,
   },
   {
-    name: "Dane Historyczne",
-    key: "history-data",
-    icon: <Icon fontSize="medium">price_change</Icon>,
-    route: "/quotes/history-data",
+    name: "Statystyki",
+    key: "statystyki",
+    icon: <Icon fontSize="medium">table_chart</Icon>,
+    route: "/gps/statystyki",
     protected: true,
-    component: <HistoryData />,
+    component: <Statistics />,
   },
-
   {
     name: "Sign In",
     key: "sign-in",

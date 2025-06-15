@@ -37,7 +37,6 @@ export const authUserExternalGPSApi = createAsyncThunk(
         headers: {
           "Content-type": "application/json",
         },
-        credentials: "include",
       });
       if (!response.ok) {
         const errorData = await response.json();
