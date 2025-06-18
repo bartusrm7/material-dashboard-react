@@ -13,7 +13,7 @@ export default function LastPricesTable() {
   const dispatch = useDispatch();
   const fuelPrices = useSelector((state) => state.online.fuelData);
   const loading = useSelector((state) => state.online.loading);
-  const [activeTab, setActiveTab] = useState("ON");
+  const [activeTab, setActiveTab] = useState(null);
   const [fuelPricesHistory, setFuelPricesHistory] = useState([]);
   const { columns, rows } = pricesTable({
     priceProp: fuelPricesHistory.map((item) => item.price),
@@ -78,7 +78,7 @@ export default function LastPricesTable() {
             </MDTypography>
           </MDBox>
 
-          <MDBox pt={6} pb={3} pl={1.75} pr={1.75}>
+          <MDBox pt={6} pb={3} pl={2} pr={2}>
             <Tabs value={activeTab} onChange={handleOpenTab}>
               <Tab label="ON" value={"ON"} />
               <Tab label="PB95" value={"PB95"} />
@@ -86,12 +86,14 @@ export default function LastPricesTable() {
             </Tabs>
           </MDBox>
 
-          <DataTable
-            table={{ columns, rows }}
-            entriesPerPage={false}
-            showTotalEntries={false}
-            noEndBorder
-          />
+          {activeTab && (
+            <DataTable
+              table={{ columns, rows }}
+              entriesPerPage={false}
+              showTotalEntries={false}
+              noEndBorder
+            />
+          )}
         </Card>
       </MDBox>
     </DashboardLayout>

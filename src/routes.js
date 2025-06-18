@@ -132,7 +132,7 @@ const routes = [
       {
         name: "Statystyki",
         key: "statystyki",
-        icon: <Icon fontSize="medium">table_chart</Icon>,
+        icon: <Icon fontSize="medium">donut_small</Icon>,
         route: "/gps/statystyki",
         protected: true,
         component: <Statistics />,
@@ -158,7 +158,7 @@ const routes = [
   {
     name: "Statystyki",
     key: "statystyki",
-    icon: <Icon fontSize="medium">table_chart</Icon>,
+    icon: <Icon fontSize="medium">donut_small</Icon>,
     route: "/gps/statystyki",
     protected: true,
     component: <Statistics />,

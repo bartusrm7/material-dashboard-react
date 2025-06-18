@@ -3,8 +3,22 @@ import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
+import Vehicle from "./Vehicle";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getVehiclesDataAPIThunk } from "store/features/vehiclesSlice";
 
 export default function VehicleHistory() {
+  const dispatch = useDispatch();
+  const vehiclesData = useSelector((state) => state.vehicles.vehiclesData);
+  const locationData = useSelector((state) => state.vehicles.locationData);
+  const [toggleChoseCarLocation, setToggleChoseCarLocation] = useState(null);
+  const [chosenDate, setChosenDate] = useState(new Date().toISOString().slice(0, 10));
+
+  useEffect(() => {
+    dispatch(getVehiclesDataAPIThunk());
+  }, [dispatch]);
+
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -24,6 +38,15 @@ export default function VehicleHistory() {
               <MDTypography variant="h6" color="white">
                 Historia wszystkich pojazdów
               </MDTypography>
+            </MDBox>
+
+            <MDBox pt={3} pb={3} pl={3} pr={3}>
+              <Vehicle
+                manufacturer={vehiclesData.manufacturer}
+                model={vehiclesData.model}
+                registration={vehiclesData.registration}
+                date={chosenDate}
+              />
             </MDBox>
           </Card>
         </Grid>

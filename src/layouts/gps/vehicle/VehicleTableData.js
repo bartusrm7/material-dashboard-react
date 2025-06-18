@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getVehiclesDataAPIThunk } from "store/features/vehiclesSlice";
 
-export default function VehicleTableData() {
+export default function VehicleTableData(onOpenMap) {
   const dispatch = useDispatch();
   const vehiclesData = useSelector((state) => state.vehicles.vehiclesData);
 
@@ -27,7 +27,7 @@ export default function VehicleTableData() {
         rejestracja: vehiclesData.registration,
         rocznik: vehiclesData.model_year,
         gps: (
-          <MDButton color="light">
+          <MDButton color="light" onClick={() => onOpenMap(vehiclesData.registration)}>
             <Icon fontSize="medium">directions_car</Icon>
           </MDButton>
         ),
