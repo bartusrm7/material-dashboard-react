@@ -55,7 +55,7 @@ export default function VehicleData() {
                 Tablica z dostępnymi pojazdami
               </MDTypography>
             </MDBox>
-            <MDBox pt={3} pb={3}>
+            <MDBox pt={3} pb={3} pl={3} pr={3}>
               <DataTable
                 table={{ columns, rows }}
                 isSorted={false}
@@ -67,7 +67,7 @@ export default function VehicleData() {
                 <GoogleMap
                   center={vehicleLocalization}
                   zoom={15}
-                  mapContainerStyle={{ width: "100%", height: "50vh" }}
+                  mapContainerStyle={{ width: "100%", height: "50vh", borderRadius: "8px" }}
                 >
                   <Marker position={vehicleLocalization} />
                 </GoogleMap>

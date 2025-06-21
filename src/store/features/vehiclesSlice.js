@@ -3,6 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 const initialState = {
   vehiclesData: {},
   locationData: {},
+  curiousData: {},
   loading: false,
   error: null,
 };
@@ -52,6 +53,51 @@ export const getVehiclesLocalizationByRegistrationThunk = createAsyncThunk(
   }
 );
 
+export const getVehiclesLocalizationByRegistrationAndDateThunk = createAsyncThunk(
+  "/vehicle-date-localization",
+  async ({ registration, startDate, endDate }, { rejectWithValue }) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3001/vehicle-date-localization?registration=${registration}&start_timestamp=${startDate}&end_timestamp=${endDate}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-type": "application/json",
+          },
+        }
+      );
+      if (!response.ok) {
+        const errorData = await response.json();
+        return rejectWithValue({ error: errorData.error });
+      }
+      return await response.json();
+    } catch (error) {
+      return rejectWithValue({ error: error.message });
+    }
+  }
+);
+
+export const getVehiclesCuriousDataThunk = createAsyncThunk(
+  "/vehicle-curious-data",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch(`http://localhost:3001/vehicles-curious-data`, {
+        method: "GET",
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
+      if (!response.ok) {
+        const errorData = await response.json();
+        return rejectWithValue({ error: errorData.error });
+      }
+      return await response.json();
+    } catch (error) {
+      return rejectWithValue({ error: error.message });
+    }
+  }
+);
+
 export const vehiclesSlice = createSlice({
   name: "vehicles",
   initialState,
@@ -82,6 +128,38 @@ export const vehiclesSlice = createSlice({
         state.error = null;
       })
       .addCase(getVehiclesLocalizationByRegistrationThunk.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      .addCase(getVehiclesLocalizationByRegistrationAndDateThunk.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getVehiclesLocalizationByRegistrationAndDateThunk.fulfilled, (state, action) => {
+        state.curiousData = action.payload;
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(getVehiclesLocalizationByRegistrationAndDateThunk.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      .addCase(getVehiclesCuriousDataThunk.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getVehiclesCuriousDataThunk.fulfilled, (state, action) => {
+        state.curiousData = action.payload.map((vehicle) => ({
+          registration: vehicle.registration,
+          odometer: vehicle.odometer,
+          road_speed: vehicle.road_speed,
+        }));
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(getVehiclesCuriousDataThunk.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       }),

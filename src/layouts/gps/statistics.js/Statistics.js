@@ -3,9 +3,19 @@ import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import DataTable from "examples/Tables/DataTable";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getVehiclesDataAPIThunk } from "store/features/vehiclesSlice";
+import StatisticsTableData from "./StatisticsTableData";
 
 export default function Statistics() {
+  const dispatch = useDispatch();
+  const vehiclesData = useSelector((state) => state.vehicles.vehiclesData);
+
+  useEffect(() => {
+    dispatch(getVehiclesDataAPIThunk());
+  }, [dispatch]);
+
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -27,7 +37,9 @@ export default function Statistics() {
               </MDTypography>
             </MDBox>
 
-            <MDBox pt={3} pb={3}></MDBox>
+            <MDBox pt={6} pb={6} pl={3} pr={3}>
+              <StatisticsTableData />
+            </MDBox>
           </Card>
         </Grid>
       </MDBox>

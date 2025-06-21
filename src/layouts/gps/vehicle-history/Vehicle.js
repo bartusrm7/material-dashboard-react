@@ -5,7 +5,7 @@ import MDInput from "components/MDInput";
 import MDTypography from "components/MDTypography";
 import PropTypes from "prop-types";
 
-function Vehicle({ manufacturer, model, registration, date }) {
+function Vehicle({ manufacturer, model, registration, date, handleSelectDate, showMap }) {
   return (
     <MDBox
       component="li"
@@ -28,8 +28,8 @@ function Vehicle({ manufacturer, model, registration, date }) {
       </MDBox>
 
       <MDBox display="flex" alignItems="center" lineHeight={1} ml={3} sx={{ cursor: "pointer" }}>
-        <MDInput type="date" value={date} />
-        <MDButton color="light">
+        <MDInput type="date" value={date} onChange={(e) => handleSelectDate(e.target.value)} />
+        <MDButton color="light" onClick={showMap}>
           <Icon fontSize="medium">directions_car</Icon>
         </MDButton>
       </MDBox>
@@ -42,6 +42,8 @@ Vehicle.propTypes = {
   model: PropTypes.string,
   registration: PropTypes.string,
   date: PropTypes.string,
+  handleSelectDate: PropTypes.func,
+  showMap: PropTypes.func,
 };
 
 export default Vehicle;
