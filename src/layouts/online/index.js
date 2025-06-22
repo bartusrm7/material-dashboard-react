@@ -29,6 +29,7 @@ import DataTable from "examples/Tables/DataTable";
 // Data
 import onlineTableData from "./data/onlineTableData";
 import QuotesMarketData from "./data/quotesMarketData";
+import ONChartPrices from "./data/onChartPrices";
 
 export default function Online() {
   const { columns, rows } = onlineTableData();
@@ -69,6 +70,12 @@ export default function Online() {
           <MDBox mt={4.5}>
             <MDBox>
               <QuotesMarketData />
+            </MDBox>
+          </MDBox>
+
+          <MDBox mt={4.5}>
+            <MDBox>
+              <ONChartPrices />
             </MDBox>
           </MDBox>
         </Grid>

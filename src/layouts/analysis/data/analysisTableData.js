@@ -5,8 +5,7 @@ import { getFuelPrices } from "store/features/onlineSlice";
 
 export default function AnalysisTableData() {
   const dispatch = useDispatch();
-  const fuelData = useSelector((state) => state.online.fuelData);
-  const loading = useSelector((state) => state.online.loading);
+  const { fuelData, loading } = useSelector((state) => state.online);
   const [fuelLast15DaysData, setFuelLast15DaysData] = useState({
     dateLabels: [],
     onPrice: [],

@@ -48,7 +48,7 @@ export default function QuotesMarketData() {
             />
           </MDBox>
         </Grid>
-        <Grid item xs={12} md={6} lg={4}>
+        <Grid item xs={12} lg={4}>
           <MDBox mb={1.5}>
             <ComplexStatisticsCard
               color="warning"

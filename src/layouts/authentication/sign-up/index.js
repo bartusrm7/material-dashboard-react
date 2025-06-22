@@ -58,9 +58,9 @@ function Cover() {
 
   useEffect(() => {
     if (isRegistered) {
-      navigate("/post-register");
+      navigate("/sign-in");
     }
-  }, [isRegistered, navigate]);
+  }, [dispatch, isRegistered, navigate]);
 
   return (
     <CoverLayout image={bgImage}>

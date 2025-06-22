@@ -58,7 +58,7 @@ function Basic() {
     if (isLogged) {
       navigate("/notowania/online");
     }
-  }, [isLogged, navigate]);
+  }, [dispatch, isLogged, navigate]);
 
   return (
     <CoverLayout image={bgImage}>

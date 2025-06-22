@@ -27,9 +27,17 @@ function Vehicle({ manufacturer, model, registration, date, handleSelectDate, sh
         </MDTypography>
       </MDBox>
 
-      <MDBox display="flex" alignItems="center" lineHeight={1} ml={3} sx={{ cursor: "pointer" }}>
+      <MDBox
+        display="flex"
+        flexWrap="wrap"
+        alignItems="center"
+        justifyContent="center"
+        lineHeight={1}
+        ml={3}
+        sx={{ cursor: "pointer" }}
+      >
         <MDInput type="date" value={date} onChange={(e) => handleSelectDate(e.target.value)} />
-        <MDButton color="light" onClick={showMap}>
+        <MDButton color="light" onClick={() => showMap(registration, date)}>
           <Icon fontSize="medium">directions_car</Icon>
         </MDButton>
       </MDBox>

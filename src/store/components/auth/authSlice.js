@@ -62,6 +62,8 @@ export const refreshAccessTokenThunk = createAsyncThunk(
         return rejectWithValue({ error: errorData.error });
       }
       const data = await response.json();
+      console.log(data);
+      console.log({ accessToken: data.accessToken });
       return { accessToken: data.accessToken };
     } catch (error) {
       return rejectWithValue({ error: error.message });

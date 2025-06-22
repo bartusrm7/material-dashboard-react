@@ -55,10 +55,10 @@ export const getVehiclesLocalizationByRegistrationThunk = createAsyncThunk(
 
 export const getVehiclesLocalizationByRegistrationAndDateThunk = createAsyncThunk(
   "/vehicle-date-localization",
-  async ({ registration, startDate, endDate }, { rejectWithValue }) => {
+  async ({ registration, start_timestamp, end_timestamp }, { rejectWithValue }) => {
     try {
       const response = await fetch(
-        `http://localhost:3001/vehicle-date-localization?registration=${registration}&start_timestamp=${startDate}&end_timestamp=${endDate}`,
+        `http://localhost:3001/vehicle-date-localization?registration=${registration}&start_timestamp=${start_timestamp}&end_timestamp=${end_timestamp}`,
         {
           method: "GET",
           headers: {
@@ -137,7 +137,7 @@ export const vehiclesSlice = createSlice({
         state.error = null;
       })
       .addCase(getVehiclesLocalizationByRegistrationAndDateThunk.fulfilled, (state, action) => {
-        state.curiousData = action.payload;
+        state.locationData = action.payload;
         state.loading = false;
         state.error = null;
       })
