@@ -168,7 +168,9 @@ export default function VehicleHistory() {
                   </GoogleMap>
                 </>
               ) : (
-                <MDTypography>Brak danych dla wybranego dnia</MDTypography>
+                <MDTypography>
+                  Brak danych dla wybranego dnia, kliknij w ikonę samochodu i wybierz inny dzień
+                </MDTypography>
               )}
             </MDBox>
           </Card>
