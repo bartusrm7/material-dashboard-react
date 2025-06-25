@@ -12,12 +12,15 @@ export const getVehiclesDataAPIThunk = createAsyncThunk(
   "/get-all-vehicles",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await fetch("http://localhost:3001/get-all-vehicles", {
-        method: "GET",
-        headers: {
-          "Content-type": "application/json",
-        },
-      });
+      const response = await fetch(
+        "https://mui-dashboard-backend-t9uw.onrender.com/get-all-vehicles",
+        {
+          method: "GET",
+          headers: {
+            "Content-type": "application/json",
+          },
+        }
+      );
       if (!response.ok) {
         const errorData = await response.json();
         return rejectWithValue({ error: errorData.error });
@@ -34,7 +37,7 @@ export const getVehiclesLocalizationByRegistrationThunk = createAsyncThunk(
   async (registration, { rejectWithValue }) => {
     try {
       const response = await fetch(
-        `http://localhost:3001/vehicle-localization?registration=${registration}`,
+        `https://mui-dashboard-backend-t9uw.onrender.com/vehicle-localization?registration=${registration}`,
         {
           method: "GET",
           headers: {
@@ -58,7 +61,7 @@ export const getVehiclesLocalizationByRegistrationAndDateThunk = createAsyncThun
   async ({ registration, start_timestamp, end_timestamp }, { rejectWithValue }) => {
     try {
       const response = await fetch(
-        `http://localhost:3001/vehicle-date-localization?registration=${registration}&start_timestamp=${start_timestamp}&end_timestamp=${end_timestamp}`,
+        `https://mui-dashboard-backend-t9uw.onrender.com/vehicle-date-localization?registration=${registration}&start_timestamp=${start_timestamp}&end_timestamp=${end_timestamp}`,
         {
           method: "GET",
           headers: {
@@ -81,12 +84,15 @@ export const getVehiclesCuriousDataThunk = createAsyncThunk(
   "/vehicle-curious-data",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await fetch(`http://localhost:3001/vehicles-curious-data`, {
-        method: "GET",
-        headers: {
-          "Content-type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `https://mui-dashboard-backend-t9uw.onrender.com/vehicles-curious-data`,
+        {
+          method: "GET",
+          headers: {
+            "Content-type": "application/json",
+          },
+        }
+      );
       if (!response.ok) {
         const errorData = await response.json();
         return rejectWithValue({ error: errorData.error });

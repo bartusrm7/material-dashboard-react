@@ -8,7 +8,7 @@ const initialState = {
 
 export const getFuelPrices = createAsyncThunk("/fuel-data", async (_, { rejectWithValue }) => {
   try {
-    const response = await fetch("http://localhost:3001/fuel-data", {
+    const response = await fetch("https://mui-dashboard-backend-t9uw.onrender.com/fuel-data", {
       method: "GET",
       headers: {
         "Content-type": "application/json",

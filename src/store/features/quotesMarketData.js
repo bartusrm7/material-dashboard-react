@@ -12,7 +12,7 @@ export const usdPlnDataThunk = createAsyncThunk(
   "/usd-pln-exchange",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await fetch("http://localhost:3001/usd-pln-exchange", {
+      const response = await fetch("https://mui-dashboard-backend-t9uw.onrender.com/usd-pln-exchange", {
         method: "GET",
         headers: {
           "Content-type": "application/json",
@@ -33,7 +33,7 @@ export const gasOilDataThunk = createAsyncThunk(
   "/gas-oil-price",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await fetch("http://localhost:3001/gas-oil-price", {
+      const response = await fetch("https://mui-dashboard-backend-t9uw.onrender.com/gas-oil-price", {
         method: "GET",
         headers: {
           "Content-type": "application/json",
@@ -54,7 +54,7 @@ export const nbpUsdPlnDataThunk = createAsyncThunk(
   "/nbp-usd-pln-exchange",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await fetch("http://localhost:3001/nbp-usd-pln-exchange", {
+      const response = await fetch("https://mui-dashboard-backend-t9uw.onrender.com/nbp-usd-pln-exchange", {
         method: "GET",
         headers: {
           "Content-type": "application/json",

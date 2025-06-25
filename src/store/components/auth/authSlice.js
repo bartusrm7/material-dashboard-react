@@ -10,7 +10,7 @@ const initialState = {
 
 export const userLogin = createAsyncThunk("/login", async (userData, { rejectWithValue }) => {
   try {
-    const response = await fetch("http://localhost:3001/login", {
+    const response = await fetch("https://mui-dashboard-backend-t9uw.onrender.com/login", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -32,7 +32,7 @@ export const authUserExternalGPSApi = createAsyncThunk(
   "/gps-auth-api",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await fetch("http://localhost:3001/gps-auth-api", {
+      const response = await fetch("https://mui-dashboard-backend-t9uw.onrender.com/gps-auth-api", {
         method: "GET",
         headers: {
           "Content-type": "application/json",
@@ -53,10 +53,13 @@ export const refreshAccessTokenThunk = createAsyncThunk(
   "/refresh-token",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await fetch("http://localhost:3001/refresh-token", {
-        method: "POST",
-        credentials: "include",
-      });
+      const response = await fetch(
+        "https://mui-dashboard-backend-t9uw.onrender.com/refresh-token",
+        {
+          method: "POST",
+          credentials: "include",
+        }
+      );
       if (!response.ok) {
         const errorData = await response.json();
         return rejectWithValue({ error: errorData.error });
@@ -73,7 +76,7 @@ export const refreshAccessTokenThunk = createAsyncThunk(
 
 export const userLogout = createAsyncThunk("/logout", async (_, { rejectWithValue }) => {
   try {
-    const response = await fetch("http://localhost:3001/logout", {
+    const response = await fetch("https://mui-dashboard-backend-t9uw.onrender.com/logout", {
       method: "POST",
       headers: {
         "Content-type": "application/json",

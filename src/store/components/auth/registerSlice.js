@@ -11,7 +11,7 @@ export const userRegister = createAsyncThunk(
   "user/register",
   async (userData, { rejectWithValue }) => {
     try {
-      const response = await fetch("http://localhost:3001/register", {
+      const response = await fetch("https://mui-dashboard-backend-t9uw.onrender.com/register", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
