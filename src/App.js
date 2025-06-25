@@ -108,19 +108,19 @@ export default function App() {
     document.scrollingElement.scrollTop = 0;
   }, [pathname]);
 
-  useEffect(() => {
-    if (isLogged) {
-      const refreshToken = async () => {
-        await reduxDispatch(refreshAccessTokenThunk());
-      };
-      refreshToken();
+  // useEffect(() => {
+  //   if (isLogged) {
+  //     const refreshToken = async () => {
+  //       await reduxDispatch(refreshAccessTokenThunk());
+  //     };
+  //     refreshToken();
 
-      const interval = setInterval(() => {
-        refreshToken();
-      }, 14 * 60 * 1000);
-      return () => clearInterval(interval);
-    }
-  }, [reduxDispatch, isLogged]);
+  //     const interval = setInterval(() => {
+  //       refreshToken();
+  //     }, 14 * 60 * 1000);
+  //     return () => clearInterval(interval);
+  //   }
+  // }, [reduxDispatch, isLogged]);
 
   const getRoutes = (allRoutes) =>
     allRoutes.map((route) => {
