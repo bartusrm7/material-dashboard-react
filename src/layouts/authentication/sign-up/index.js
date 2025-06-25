@@ -60,7 +60,7 @@ function Cover() {
     if (isRegistered) {
       navigate("/sign-in");
     }
-  }, [dispatch, isRegistered, navigate]);
+  }, [isRegistered, navigate]);
 
   return (
     <CoverLayout image={bgImage}>

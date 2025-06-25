@@ -56,9 +56,9 @@ function Basic() {
 
   useEffect(() => {
     if (isLogged) {
-      navigate("/notowania/online");
+      navigate("/notowania/online", { replace: true });
     }
-  }, [dispatch, isLogged, navigate]);
+  }, [isLogged, navigate]);
 
   return (
     <CoverLayout image={bgImage}>
