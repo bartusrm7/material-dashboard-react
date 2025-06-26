@@ -23,6 +23,7 @@ export const userLogin = createAsyncThunk("/login", async (userData, { rejectWit
       const errorData = await response.json();
       return rejectWithValue({ error: errorData.error });
     }
+    console.log(accessToken);
     return await response.json();
   } catch (error) {
     return rejectWithValue({ error: error.message });
@@ -67,8 +68,6 @@ export const refreshAccessTokenThunk = createAsyncThunk(
         return rejectWithValue({ error: errorData.error });
       }
       const data = await response.json();
-      console.log(data);
-      console.log({ accessToken: data.accessToken });
       return { accessToken: data.accessToken };
     } catch (error) {
       return rejectWithValue({ error: error.message });
@@ -107,6 +106,8 @@ export const authSlice = createSlice({
         state.error = null;
       })
       .addCase(userLogin.fulfilled, (state, action) => {
+        console.log(action.payload);
+        console.log(isLogged);
         state.user = action.payload;
         state.isLogged = true;
         state.loading = false;
