@@ -23,9 +23,6 @@ export const userLogin = createAsyncThunk("/login", async (userData, { rejectWit
       const errorData = await response.json();
       return rejectWithValue({ error: errorData.error });
     }
-    console.log(userData);
-    console.log(response.json());
-    console.log({ accessToken: data.accessToken });
     return await response.json();
   } catch (error) {
     return rejectWithValue({ error: error.message });
