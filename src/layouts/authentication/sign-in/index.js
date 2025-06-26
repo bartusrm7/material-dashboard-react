@@ -38,6 +38,7 @@ import { userLogin } from "store/components/auth/authSlice";
 function Basic() {
   const dispatch = useDispatch();
   const isLogged = useSelector((state) => state.auth.isLogged);
+  const accessToken = useSelector((state) => state.auth.accessToken);
   const errorMessage = useSelector((state) => state.auth.error);
   const [userData, setUserData] = useState({ userEmail: "", userPassword: "" });
   const navigate = useNavigate();
@@ -51,6 +52,9 @@ function Basic() {
 
   const handleUserLogin = async (e) => {
     e.preventDefault();
+    console.log(accessToken);
+    console.log(isLogged);
+    console.log(userData);
     await dispatch(userLogin(userData));
   };
 
@@ -58,8 +62,6 @@ function Basic() {
     if (isLogged) {
       navigate("/notowania/online", { replace: true });
     }
-    console.log(isLogged);
-    console.log(userData);
   }, [isLogged, navigate]);
 
   return (
