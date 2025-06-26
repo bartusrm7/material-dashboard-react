@@ -57,9 +57,9 @@ function Basic() {
   };
 
   useEffect(() => {
-    if (isLogged) {
-      navigate("/notowania/online");
-    }
+    // if (isLogged) {
+    navigate("/notowania/online");
+    // }
   }, [isLogged, navigate]);
 
   return (
