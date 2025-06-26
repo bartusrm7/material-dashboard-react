@@ -25,6 +25,7 @@ export const userLogin = createAsyncThunk("/login", async (userData, { rejectWit
     }
     console.log(userData);
     console.log(response.json());
+    console.log({ accessToken: data.accessToken });
     return await response.json();
   } catch (error) {
     return rejectWithValue({ error: error.message });
@@ -109,8 +110,6 @@ export const authSlice = createSlice({
         state.error = null;
       })
       .addCase(userLogin.fulfilled, (state, action) => {
-        console.log("Payload:", action.payload); // Loguje dane z action.payload
-        console.log("AccessToken:", action.payload.accessToken); // Loguje tylko accessToken
         state.user = action.payload;
         state.isLogged = true;
         state.loading = false;
