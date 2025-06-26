@@ -38,9 +38,11 @@ import { userLogin } from "store/components/auth/authSlice";
 function Basic() {
   const dispatch = useDispatch();
   const isLogged = useSelector((state) => state.auth.isLogged);
+  const accessToken = useSelector((state) => state.auth.accessToken);
   const errorMessage = useSelector((state) => state.auth.error);
   const [userData, setUserData] = useState({ userEmail: "", userPassword: "" });
   const navigate = useNavigate();
+  console.log(accessToken);
 
   const handleInputFormChange = (key, value) => {
     setUserData((prevState) => ({
@@ -52,9 +54,13 @@ function Basic() {
   const handleUserLogin = async (e) => {
     e.preventDefault();
     await dispatch(userLogin(userData));
+    console.log(accessToken);
   };
 
-  if (isLogged) navigate("/dashboard");
+  useEffect(() => {
+    if (isLogged) navigate("/notowania/online");
+    console.log(accessToken);
+  }, [isLogged, navigate]);
 
   return (
     <CoverLayout image={bgImage}>
