@@ -13,7 +13,6 @@ export const userLogin = createAsyncThunk("/login", async (userData, { rejectWit
     const response = await fetch("https://mui-dashboard-backend-t9uw.onrender.com/login", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${state.accessToken}`,
         "Content-type": "application/json",
       },
       body: JSON.stringify(userData),
@@ -23,7 +22,6 @@ export const userLogin = createAsyncThunk("/login", async (userData, { rejectWit
       const errorData = await response.json();
       return rejectWithValue({ error: errorData.error });
     }
-    console.log(accessToken);
     return await response.json();
   } catch (error) {
     return rejectWithValue({ error: error.message });
@@ -37,7 +35,6 @@ export const authUserExternalGPSApi = createAsyncThunk(
       const response = await fetch("https://mui-dashboard-backend-t9uw.onrender.com/gps-auth-api", {
         method: "GET",
         headers: {
-          Authorization: `Bearer ${state.accessToken}`,
           "Content-type": "application/json",
         },
       });
@@ -106,8 +103,6 @@ export const authSlice = createSlice({
         state.error = null;
       })
       .addCase(userLogin.fulfilled, (state, action) => {
-        console.log(action.payload);
-        console.log(isLogged);
         state.user = action.payload;
         state.isLogged = true;
         state.loading = false;
