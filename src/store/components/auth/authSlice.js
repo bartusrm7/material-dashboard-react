@@ -104,8 +104,7 @@ export const authSlice = createSlice({
       })
       .addCase(userLogin.fulfilled, (state, action) => {
         state.accessToken = action.payload.accessToken;
-        console.log(action.payload);
-        state.user = action.payload;
+        state.user = action.payload.user;
         state.isLogged = true;
         state.loading = false;
         state.error = null;
