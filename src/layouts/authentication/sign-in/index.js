@@ -58,6 +58,8 @@ function Basic() {
     if (isLogged) {
       navigate("/notowania/online", { replace: true });
     }
+    console.log(isLogged);
+    console.log(userData);
   }, [isLogged, navigate]);
 
   return (
