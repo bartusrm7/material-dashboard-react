@@ -51,6 +51,7 @@ function Basic() {
 
   const handleUserLogin = async (e) => {
     e.preventDefault();
+    console.log(isLogged);
     await dispatch(userLogin(userData));
   };
 
