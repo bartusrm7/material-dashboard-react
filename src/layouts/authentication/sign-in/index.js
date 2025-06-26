@@ -53,13 +53,14 @@ function Basic() {
   const handleUserLogin = async (e) => {
     e.preventDefault();
     await dispatch(userLogin(userData));
+    console.log(accessToken);
   };
 
   useEffect(() => {
     if (isLogged) {
       navigate("/notowania/online");
     }
-  }, [dispatch, isLogged, navigate]);
+  }, [isLogged, navigate]);
 
   return (
     <CoverLayout image={bgImage}>
