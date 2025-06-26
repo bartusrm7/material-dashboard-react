@@ -53,7 +53,6 @@ import { refreshAccessTokenThunk } from "store/components/auth/authSlice";
 // eslint-disable-next-line react/prop-types
 function ProtectedRoute({ children }) {
   const token = Cookies.get("accessToken");
-  console.log(token);
   if (!token) {
     return <Navigate to="/sign-in" replace />;
   }

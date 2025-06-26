@@ -22,6 +22,7 @@ export const userLogin = createAsyncThunk("/login", async (userData, { rejectWit
       const errorData = await response.json();
       return rejectWithValue({ error: errorData.error });
     }
+    console.log(accessToken);
     return await response.json();
   } catch (error) {
     return rejectWithValue({ error: error.message });
@@ -103,6 +104,8 @@ export const authSlice = createSlice({
         state.error = null;
       })
       .addCase(userLogin.fulfilled, (state, action) => {
+        console.log(action.payload);
+        console.log(state.accessToken);
         state.user = action.payload;
         state.isLogged = true;
         state.loading = false;
