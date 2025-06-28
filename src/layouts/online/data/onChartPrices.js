@@ -17,13 +17,13 @@ export default function ONChartPrices() {
   const formatDate =
     onPrices.last15DaysONPrice?.slice(0, 5).map((onDate) => onDate.rcp_data.split(" ")[0]) || [];
   const formattedDate = formatDate.map((date) => date.split("-").reverse().join("."));
-  const last5ONPrice = onPrices.last15DaysONPrice?.slice(0, 5).map((onDate) => onDate.rcp_cena_l);
+  const last5ONPrice = onPrices.last15DaysONPrice?.slice(0, 5).map((onDate) => onDate.rcp_cena_m);
 
   return (
     <>
       <VerticalBarChart
         icon={{ color: "info", component: "leaderboard" }}
-        title="Wykres cen paliwa"
+        title="Wykres cen paliwa(m³)"
         description="Ostatnie 5 cen paliwa ON"
         chart={{
           labels: formattedDate?.reverse(),

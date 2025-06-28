@@ -28,7 +28,7 @@ export default function StatisticsTableData() {
               datasets: [
                 {
                   color: "dark",
-                  data: [curiousData[0].odometer],
+                  data: [Math.floor(curiousData[0].odometer / 1000)],
                 },
               ],
             }}
@@ -44,7 +44,7 @@ export default function StatisticsTableData() {
               datasets: [
                 {
                   color: "dark",
-                  data: [curiousData[0].road_speed],
+                  data: [curiousData[0].speed],
                 },
               ],
             }}

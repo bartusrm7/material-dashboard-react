@@ -32,17 +32,17 @@ export default function LastPricesTable() {
       if (activeTab === "ON") {
         fuelData = fuelPrices.last15DaysONPrice.map((item) => ({
           date: item.rcp_data.split(" ")[0].split("-").reverse().join("."),
-          price: item.rcp_cena_l + "zł",
+          price: item.rcp_cena_m + "zł",
         }));
       } else if (activeTab === "PB95") {
         fuelData = fuelPrices.last15DaysPB95Price.map((item) => ({
           date: item.rcp_data.split(" ")[0].split("-").reverse().join("."),
-          price: item.rcp_cena_l + "zł",
+          price: item.rcp_cena_m + "zł",
         }));
       } else if (activeTab === "HVO") {
         fuelData = fuelPrices.last15DaysHVOPrice.map((item) => ({
           date: item.rcp_data.split(" ")[0].split("-").reverse().join("."),
-          price: item.rcp_cena_l + "zł",
+          price: item.rcp_cena_m + "zł",
         }));
       }
 
