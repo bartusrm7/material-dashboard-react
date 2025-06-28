@@ -58,7 +58,7 @@ const routes = [
     key: "notowania",
     icon: <Icon fontSize="medium">price_change</Icon>,
     route: "/notowania",
-
+    protected: true,
     component: <Quotes />,
     children: [
       {
@@ -82,7 +82,7 @@ const routes = [
     key: "online",
     icon: <Icon fontSize="medium">show_chart</Icon>,
     route: "/notowania/online",
-
+    protected: true,
     component: <Online />,
   },
   {
@@ -90,7 +90,7 @@ const routes = [
     key: "Dane Historyczne",
     icon: <Icon fontSize="medium">assessment</Icon>,
     route: "/notowania/dane-historyczne",
-
+    protected: true,
     component: <HistoryData />,
   },
   {
@@ -99,7 +99,7 @@ const routes = [
     key: "analizy",
     icon: <Icon fontSize="medium">equalizer</Icon>,
     route: "/analizy",
-
+    protected: true,
     component: <Analysis />,
   },
   {
@@ -108,7 +108,7 @@ const routes = [
     key: "gps",
     icon: <Icon fontSize="medium">location_on</Icon>,
     route: "/gps",
-
+    protected: true,
     component: <GPS />,
     children: [
       {
@@ -142,7 +142,7 @@ const routes = [
     key: "pojazdy",
     icon: <Icon fontSize="medium">directions_car</Icon>,
     route: "/gps/pojazdy",
-
+    protected: true,
     component: <VehicleData />,
   },
   {
@@ -150,7 +150,7 @@ const routes = [
     key: "historia pojazdu",
     icon: <Icon fontSize="medium">price_change</Icon>,
     route: "/gps/historia-pojazdu",
-
+    protected: true,
     component: <VehicleHistory />,
   },
   {
@@ -158,7 +158,7 @@ const routes = [
     key: "statystyki",
     icon: <Icon fontSize="medium">donut_small</Icon>,
     route: "/gps/statystyki",
-
+    protected: true,
     component: <Statistics />,
   },
   {

@@ -67,7 +67,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
 
   const closeSidenav = () => setMiniSidenav(dispatch, true);
 
-  const handleUserLogout = () => reduxDispatch(userLogout());
+  const handleUserLogout = async () => await reduxDispatch(userLogout());
 
   useEffect(() => {
     // A function that sets the mini state of the sidenav.
@@ -208,7 +208,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
       <MDBox p={2} mt="auto">
         <MDButton
           component="a"
-          href="http://localhost:3000/sign-in"
+          href="https://material-dashboard-disr.onrender.com/sign-in"
           rel="noreferrer"
           variant="gradient"
           color={sidenavColor}
