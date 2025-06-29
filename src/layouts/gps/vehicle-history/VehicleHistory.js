@@ -12,7 +12,7 @@ import { getVehiclesLocalizationByRegistrationAndDateThunk } from "store/feature
 
 export default function VehicleHistory() {
   const dispatch = useDispatch();
-  const { vehiclesData, locationData, loading } = useSelector((state) => state.vehicles);
+  const { vehiclesData, locationData } = useSelector((state) => state.vehicles);
   const [toggleChoseCarLocation, setToggleChoseCarLocation] = useState(false);
   const [chosenDate, setChosenDate] = useState(new Date().toISOString().slice(0, 10));
   const [vehicleLocalization, setVehicleLocalization] = useState({
@@ -106,21 +106,6 @@ export default function VehicleHistory() {
   useEffect(() => {
     setVehicleHasLocationData(false);
   }, [chosenDate]);
-
-  if (loading) {
-    return (
-      <MDBox
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
-        }}
-      >
-        <CircularProgress />
-      </MDBox>
-    );
-  }
 
   return (
     <DashboardLayout>
