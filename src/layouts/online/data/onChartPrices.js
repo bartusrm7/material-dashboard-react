@@ -23,7 +23,7 @@ export default function ONChartPrices() {
     <>
       <VerticalBarChart
         icon={{ color: "info", component: "leaderboard" }}
-        title="Wykres cen paliwa(m³)"
+        title="Wykres cen paliwa"
         description="Ostatnie 5 cen paliwa ON"
         chart={{
           labels: formattedDate?.reverse(),

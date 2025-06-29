@@ -56,7 +56,20 @@ export default function LastPricesTable() {
     setActiveTab(newTabValue);
   };
 
-  if (loading) return;
+  if (loading) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <CircularProgress />
+      </Box>
+    );
+  }
 
   return (
     <DashboardLayout>
