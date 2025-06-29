@@ -37,67 +37,65 @@ export default function Online() {
   const { loading } = useSelector((state) => state.online);
   const { columns, rows } = onlineTableData();
 
-  if (loading) {
-    return (
-      <MDBox
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
-        }}
-      >
-        <CircularProgress />
-      </MDBox>
-    );
-  }
-
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <MDBox pt={6} pb={3}>
-        <Grid>
-          <Grid item xs={12}>
-            <Card>
-              <MDBox
-                mx={2}
-                mt={-3}
-                py={3}
-                px={2}
-                variant="gradient"
-                bgColor="info"
-                borderRadius="lg"
-                coloredShadow="info"
-              >
-                <MDTypography variant="h6" color="white">
-                  Tabela cen paliw
-                </MDTypography>
+      {loading ? (
+        <MDBox
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+          }}
+        >
+          <CircularProgress />
+        </MDBox>
+      ) : (
+        <MDBox pt={6} pb={3}>
+          <Grid>
+            <Grid item xs={12}>
+              <Card>
+                <MDBox
+                  mx={2}
+                  mt={-3}
+                  py={3}
+                  px={2}
+                  variant="gradient"
+                  bgColor="info"
+                  borderRadius="lg"
+                  coloredShadow="info"
+                >
+                  <MDTypography variant="h6" color="white">
+                    Tabela cen paliw
+                  </MDTypography>
+                </MDBox>
+                <MDBox pt={3}>
+                  <DataTable
+                    table={{ columns, rows }}
+                    isSorted={false}
+                    entriesPerPage={false}
+                    showTotalEntries={false}
+                    noEndBorder
+                  />
+                </MDBox>
+              </Card>
+            </Grid>
+
+            <MDBox mt={4.5}>
+              <MDBox>
+                <QuotesMarketData />
               </MDBox>
-              <MDBox pt={3}>
-                <DataTable
-                  table={{ columns, rows }}
-                  isSorted={false}
-                  entriesPerPage={false}
-                  showTotalEntries={false}
-                  noEndBorder
-                />
+            </MDBox>
+
+            <MDBox mt={4.5}>
+              <MDBox>
+                <ONChartPrices />
               </MDBox>
-            </Card>
+            </MDBox>
           </Grid>
-
-          <MDBox mt={4.5}>
-            <MDBox>
-              <QuotesMarketData />
-            </MDBox>
-          </MDBox>
-
-          <MDBox mt={4.5}>
-            <MDBox>
-              <ONChartPrices />
-            </MDBox>
-          </MDBox>
-        </Grid>
-      </MDBox>
+        </MDBox>
+      )}
     </DashboardLayout>
   );
 }

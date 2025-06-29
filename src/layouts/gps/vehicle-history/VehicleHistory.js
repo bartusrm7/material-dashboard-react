@@ -12,7 +12,7 @@ import { getVehiclesLocalizationByRegistrationAndDateThunk } from "store/feature
 
 export default function VehicleHistory() {
   const dispatch = useDispatch();
-  const { vehiclesData, locationData } = useSelector((state) => state.vehicles);
+  const { vehiclesData, locationData, loading } = useSelector((state) => state.vehicles);
   const [toggleChoseCarLocation, setToggleChoseCarLocation] = useState(false);
   const [chosenDate, setChosenDate] = useState(new Date().toISOString().slice(0, 10));
   const [vehicleLocalization, setVehicleLocalization] = useState({
@@ -110,6 +110,7 @@ export default function VehicleHistory() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
+
       <MDBox pt={3} pb={3}>
         <Grid>
           <Card>
@@ -138,37 +139,52 @@ export default function VehicleHistory() {
                 showMap={handleSelectLocationByDate}
               />
 
-              {toggleChoseCarLocation && isLoaded && vehicleHasLocationData ? (
-                <>
-                  <input
-                    type="range"
-                    min="0"
-                    max={routePathData.length}
-                    value={currentPositionSlider}
-                    onChange={handleChangePositionSlider}
-                    style={{ width: "100%" }}
-                  />
-                  <GoogleMap
-                    center={routePathData[currentPositionSlider]}
-                    zoom={15}
-                    mapContainerStyle={{ width: "100%", height: "50vh", borderRadius: "8px" }}
-                  >
-                    <Marker position={routePathData[currentPositionSlider]} />
-                    <Polyline
-                      path={routePathData}
-                      options={{
-                        strokeColor: "#4285F4",
-                        strokeOpacity: 1.0,
-                        strokeWeight: 5,
-                      }}
-                      geodesic
-                    />
-                  </GoogleMap>
-                </>
+              {loading ? (
+                <MDBox
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "100vh",
+                  }}
+                >
+                  <CircularProgress />
+                </MDBox>
               ) : (
-                <MDTypography>
-                  Brak danych dla wybranego dnia, kliknij w ikonę samochodu i wybierz inny dzień
-                </MDTypography>
+                <>
+                  {toggleChoseCarLocation && isLoaded && vehicleHasLocationData ? (
+                    <>
+                      <input
+                        type="range"
+                        min="0"
+                        max={routePathData.length}
+                        value={currentPositionSlider}
+                        onChange={handleChangePositionSlider}
+                        style={{ width: "100%" }}
+                      />
+                      <GoogleMap
+                        center={routePathData[currentPositionSlider]}
+                        zoom={15}
+                        mapContainerStyle={{ width: "100%", height: "50vh", borderRadius: "8px" }}
+                      >
+                        <Marker position={routePathData[currentPositionSlider]} />
+                        <Polyline
+                          path={routePathData}
+                          options={{
+                            strokeColor: "#4285F4",
+                            strokeOpacity: 1.0,
+                            strokeWeight: 5,
+                          }}
+                          geodesic
+                        />
+                      </GoogleMap>
+                    </>
+                  ) : (
+                    <MDTypography>
+                      Brak danych dla wybranego dnia, kliknij w ikonę samochodu i wybierz inny dzień
+                    </MDTypography>
+                  )}
+                </>
               )}
             </MDBox>
           </Card>

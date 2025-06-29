@@ -32,62 +32,60 @@ export default function VehicleData() {
     }
   }, [locationData]);
 
-  if (isLoading) {
-    return (
-      <MDBox
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
-        }}
-      >
-        <CircularProgress />
-      </MDBox>
-    );
-  }
-
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <MDBox pt={3} pb={3}>
-        <Grid>
-          <Card>
-            <MDBox
-              mx={2}
-              mt={-3}
-              py={3}
-              px={2}
-              variant="gradient"
-              bgColor="info"
-              borderRadius="lg"
-              coloredShadow="info"
-            >
-              <MDTypography variant="h6" color="white">
-                Tablica z dostępnymi pojazdami
-              </MDTypography>
-            </MDBox>
-            <MDBox pt={3} pb={3} pl={3} pr={3}>
-              <DataTable
-                table={{ columns, rows }}
-                isSorted={false}
-                entriesPerPage={false}
-                showTotalEntries={false}
-                noEndBorder
-              />
-              {carMapToggle && isLoaded && (
-                <GoogleMap
-                  center={vehicleLocalization}
-                  zoom={15}
-                  mapContainerStyle={{ width: "100%", height: "50vh", borderRadius: "8px" }}
-                >
-                  <Marker position={vehicleLocalization} />
-                </GoogleMap>
-              )}
-            </MDBox>
-          </Card>
-        </Grid>
-      </MDBox>
+      {isLoading ? (
+        <MDBox
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+          }}
+        >
+          <CircularProgress />
+        </MDBox>
+      ) : (
+        <MDBox pt={3} pb={3}>
+          <Grid>
+            <Card>
+              <MDBox
+                mx={2}
+                mt={-3}
+                py={3}
+                px={2}
+                variant="gradient"
+                bgColor="info"
+                borderRadius="lg"
+                coloredShadow="info"
+              >
+                <MDTypography variant="h6" color="white">
+                  Tablica z dostępnymi pojazdami
+                </MDTypography>
+              </MDBox>
+              <MDBox pt={3} pb={3} pl={3} pr={3}>
+                <DataTable
+                  table={{ columns, rows }}
+                  isSorted={false}
+                  entriesPerPage={false}
+                  showTotalEntries={false}
+                  noEndBorder
+                />
+                {carMapToggle && isLoaded && (
+                  <GoogleMap
+                    center={vehicleLocalization}
+                    zoom={15}
+                    mapContainerStyle={{ width: "100%", height: "50vh", borderRadius: "8px" }}
+                  >
+                    <Marker position={vehicleLocalization} />
+                  </GoogleMap>
+                )}
+              </MDBox>
+            </Card>
+          </Grid>
+        </MDBox>
+      )}
     </DashboardLayout>
   );
 }
