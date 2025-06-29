@@ -58,7 +58,7 @@ export default function LastPricesTable() {
 
   if (loading) {
     return (
-      <Box
+      <MDBox
         sx={{
           display: "flex",
           justifyContent: "center",
@@ -67,7 +67,7 @@ export default function LastPricesTable() {
         }}
       >
         <CircularProgress />
-      </Box>
+      </MDBox>
     );
   }
 
