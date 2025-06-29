@@ -56,59 +56,59 @@ export default function LastPricesTable() {
     setActiveTab(newTabValue);
   };
 
-  if (loading) {
-    return (
-      <MDBox
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
-        }}
-      >
-        <CircularProgress />
-      </MDBox>
-    );
-  }
-
   return (
-    <DashboardLayout>
-      <DashboardNavbar />
-      <MDBox pt={6} pb={3}>
-        <Card>
-          <MDBox
-            mx={2}
-            mt={-3}
-            py={3}
-            px={2}
-            variant="gradient"
-            bgColor="info"
-            borderRadius="lg"
-            coloredShadow="info"
-          >
-            <MDTypography variant="h6" color="white">
-              Tabela z archiwalnymi cenami
-            </MDTypography>
-          </MDBox>
+    <>
+      {loading ? (
+        <MDBox
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+          }}
+        >
+          <CircularProgress />
+        </MDBox>
+      ) : (
+        <DashboardLayout>
+          <DashboardNavbar />
+          <MDBox pt={6} pb={3}>
+            <Card>
+              <MDBox
+                mx={2}
+                mt={-3}
+                py={3}
+                px={2}
+                variant="gradient"
+                bgColor="info"
+                borderRadius="lg"
+                coloredShadow="info"
+              >
+                <MDTypography variant="h6" color="white">
+                  Tabela z archiwalnymi cenami
+                </MDTypography>
+              </MDBox>
 
-          <MDBox pt={6} pb={3} pl={2} pr={2}>
-            <Tabs value={activeTab} onChange={handleOpenTab}>
-              <Tab label="ON" value={"ON"} />
-              <Tab label="PB95" value={"PB95"} />
-              <Tab label="HVO" value={"HVO"} />
-            </Tabs>
-          </MDBox>
+              <MDBox pt={6} pb={3} pl={2} pr={2}>
+                <Tabs value={activeTab} onChange={handleOpenTab}>
+                  <Tab label="ON" value={"ON"} />
+                  <Tab label="PB95" value={"PB95"} />
+                  <Tab label="HVO" value={"HVO"} />
+                </Tabs>
+              </MDBox>
 
-          {activeTab && (
-            <DataTable
-              table={{ columns, rows }}
-              entriesPerPage={false}
-              showTotalEntries={false}
-              noEndBorder
-            />
-          )}
-        </Card>
-      </MDBox>
-    </DashboardLayout>
+              {activeTab && (
+                <DataTable
+                  table={{ columns, rows }}
+                  entriesPerPage={false}
+                  showTotalEntries={false}
+                  noEndBorder
+                />
+              )}
+            </Card>
+          </MDBox>
+        </DashboardLayout>
+      )}
+    </>
   );
 }

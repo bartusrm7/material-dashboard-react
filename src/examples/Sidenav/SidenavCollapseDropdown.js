@@ -25,26 +25,7 @@ function SidenavCollapseDropdown({ icon, name, children, active }) {
 
       <MDBox pl={3}>
         <Collapse in={open} timeout="auto" unmountOnExit>
-          <List
-            component="div"
-            disablePadding
-            sx={{
-              "& > a > div": {
-                display: "flex",
-                alignItems: "center",
-                padding: "8px 16px",
-                minHeight: "48px",
-                justifyContent: "flex-start",
-                fontSize: "1rem",
-                backgroundColor: "transparent",
-                transition: "all 0.3s ease-in-out",
-                "&:hover": {
-                  backgroundColor: "rgba(0, 0, 0, 0.1)",
-                  borderRadius: "8px",
-                },
-              },
-            }}
-          >
+          <List component="div" disablePadding>
             {children}
           </List>
         </Collapse>
