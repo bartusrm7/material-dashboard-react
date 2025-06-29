@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getVehiclesCuriousDataThunk } from "store/features/vehiclesSlice";
 import HorizontalBarChart from "examples/Charts/BarCharts/HorizontalBarChart";
 import VerticalBarChart from "examples/Charts/BarCharts/VerticalBarChart";
+import MDBox from "components/MDBox";
+import { CircularProgress } from "@mui/material";
 
 export default function StatisticsTableData() {
   const dispatch = useDispatch();
@@ -13,7 +15,20 @@ export default function StatisticsTableData() {
     dispatch(getVehiclesCuriousDataThunk());
   }, [dispatch]);
 
-  if (loading) return;
+  if (loading) {
+    return (
+      <MDBox
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <CircularProgress />
+      </MDBox>
+    );
+  }
 
   return (
     <>

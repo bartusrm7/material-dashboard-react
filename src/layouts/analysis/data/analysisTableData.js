@@ -1,3 +1,5 @@
+import { CircularProgress } from "@mui/material";
+import MDBox from "components/MDBox";
 import DefaultLineChart from "examples/Charts/LineCharts/DefaultLineChart";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -36,7 +38,20 @@ export default function AnalysisTableData() {
     setFuelLast15DaysData({ dateLabels, onPrice, pb95Price, hvoPrice });
   }, [fuelData]);
 
-  if (loading) return;
+  if (loading) {
+    return (
+      <MDBox
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <CircularProgress />
+      </MDBox>
+    );
+  }
 
   return (
     <DefaultLineChart

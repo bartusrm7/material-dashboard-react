@@ -1,4 +1,4 @@
-import { Card, Grid } from "@mui/material";
+import { Card, CircularProgress, Grid } from "@mui/material";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
@@ -33,7 +33,20 @@ export default function VehicleData() {
     }
   }, [locationData]);
 
-  if (isLoading) return;
+   if (isLoading) {
+      return (
+        <MDBox
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+          }}
+        >
+          <CircularProgress />
+        </MDBox>
+      );
+    }
 
   return (
     <DashboardLayout>
