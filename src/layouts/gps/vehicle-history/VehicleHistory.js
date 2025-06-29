@@ -107,20 +107,20 @@ export default function VehicleHistory() {
     setVehicleHasLocationData(false);
   }, [chosenDate]);
 
-   if (loading) {
-      return (
-        <MDBox
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "100vh",
-          }}
-        >
-          <CircularProgress />
-        </MDBox>
-      );
-    }
+  if (loading) {
+    return (
+      <MDBox
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <CircularProgress />
+      </MDBox>
+    );
+  }
 
   return (
     <DashboardLayout>
