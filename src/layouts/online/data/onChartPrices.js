@@ -1,5 +1,3 @@
-import { CircularProgress } from "@mui/material";
-import MDBox from "components/MDBox";
 import VerticalBarChart from "examples/Charts/BarCharts/VerticalBarChart";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,7 +6,6 @@ import { getFuelPrices } from "store/features/onlineSlice";
 export default function ONChartPrices() {
   const dispatch = useDispatch();
   const onPrices = useSelector((state) => state.online.fuelData);
-  const loading = useSelector((state) => state.online.loading);
 
   useEffect(() => {
     dispatch(getFuelPrices());
@@ -18,21 +15,6 @@ export default function ONChartPrices() {
     onPrices.last15DaysONPrice?.slice(0, 5).map((onDate) => onDate.rcp_data.split(" ")[0]) || [];
   const formattedDate = formatDate.map((date) => date.split("-").reverse().join("."));
   const last5ONPrice = onPrices.last15DaysONPrice?.slice(0, 5).map((onDate) => onDate.rcp_cena_m);
-
-  if (loading) {
-    return (
-      <MDBox
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
-        }}
-      >
-        <CircularProgress />
-      </MDBox>
-    );
-  }
 
   return (
     <>

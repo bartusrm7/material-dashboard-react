@@ -38,7 +38,7 @@ Coded by www.creative-tim.com
 // Material Dashboard 2 React layouts
 import Quotes from "layouts/quotes";
 import Online from "layouts/online";
-import HistoryData from "layouts/historyData";
+import HistoryData from "layouts/historyData/data/lastPricesTable";
 import Analysis from "layouts/analysis";
 import GPS from "layouts/gps";
 import VehicleData from "layouts/gps/vehicle/VehicleData";

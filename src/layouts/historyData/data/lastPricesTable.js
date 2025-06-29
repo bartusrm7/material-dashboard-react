@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getFuelPrices } from "store/features/onlineSlice";
 import pricesTable from "./pricesTable";
 
-export default function LastPricesTable() {
+export default function HistoryData() {
   const dispatch = useDispatch();
   const fuelPrices = useSelector((state) => state.online.fuelData);
   const loading = useSelector((state) => state.online.loading);

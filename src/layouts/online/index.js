@@ -30,9 +30,27 @@ import DataTable from "examples/Tables/DataTable";
 import onlineTableData from "./data/onlineTableData";
 import QuotesMarketData from "./data/quotesMarketData";
 import ONChartPrices from "./data/onChartPrices";
+import { CircularProgress } from "@mui/material";
+import { useSelector } from "react-redux";
 
 export default function Online() {
+  const { loading } = useSelector((state) => state.online);
   const { columns, rows } = onlineTableData();
+
+  if (loading) {
+    return (
+      <MDBox
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <CircularProgress />
+      </MDBox>
+    );
+  }
 
   return (
     <DashboardLayout>
