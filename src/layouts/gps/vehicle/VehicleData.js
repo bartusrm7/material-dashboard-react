@@ -12,8 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default function VehicleData() {
   const dispatch = useDispatch();
-  const locationData = useSelector((state) => state.vehicles.locationData);
-  const isLoading = useSelector((state) => state.vehicles.loading);
+  const { locationData, isLoading } = useSelector((state) => state.vehicles);
   const [carMapToggle, setCarMapToggle] = useState(false);
   const [vehicleLocalization, setVehicleLocalization] = useState({ lat: null, lng: null });
 
@@ -33,20 +32,20 @@ export default function VehicleData() {
     }
   }, [locationData]);
 
-   if (isLoading) {
-      return (
-        <MDBox
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "100vh",
-          }}
-        >
-          <CircularProgress />
-        </MDBox>
-      );
-    }
+  if (isLoading) {
+    return (
+      <MDBox
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <CircularProgress />
+      </MDBox>
+    );
+  }
 
   return (
     <DashboardLayout>
